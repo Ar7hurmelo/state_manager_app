@@ -1,19 +1,19 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../app/app_module.dart';
 import 'controllers/counter_controller.dart';
 import 'ui/pages/counter_page.dart';
 
 class CounterModule extends Module {
-  final SharedPreferences prefs;
-
-  CounterModule({required this.prefs});
+  @override
+  List<Module> get imports => [AppModule()];
 
   @override
   void binds(Injector i) {
     super.binds(i);
 
-    i.addLazySingleton(() => CounterController(prefs: prefs));
+    i.addLazySingleton(() => CounterController(prefs: i<SharedPreferences>()));
   }
 
   @override

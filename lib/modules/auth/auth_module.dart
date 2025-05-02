@@ -1,14 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../config/dio/api_service.dart';
+import '../app/app_module.dart';
 import 'ui/pages/login_page.dart';
 
 class AuthModule extends Module {
-  final ApiService apiService;
-  final SharedPreferences prefs;
-
-  AuthModule({required this.prefs, required this.apiService});
+  @override
+  List<Module> get imports => [AppModule()];
 
   @override
   void binds(Injector i) {

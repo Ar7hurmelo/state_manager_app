@@ -3,9 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CounterController {
   final ValueNotifier<int> counter = ValueNotifier<int>(0);
-
   String key = "";
-
   final SharedPreferences prefs;
 
   CounterController({required this.prefs});

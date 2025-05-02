@@ -2,17 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiService {
+  final url = 'https://pokeapi.co/api/v2';
+  late final Dio _dio;
+
   ApiService() {
-    // Configure Dio
-    configureDio(baseUrl: 'https://pokeapi.co/api/v2');
+    configureDio(baseUrl: url);
   }
-  // Private constructor
-  ApiService._internal();
-  // Singleton instance
-  static final ApiService _instance = ApiService._internal();
-  // Getter for the instance
-  static ApiService get instance => _instance;
-  late Dio _dio;
 
   // Configuration function
   void configureDio({
