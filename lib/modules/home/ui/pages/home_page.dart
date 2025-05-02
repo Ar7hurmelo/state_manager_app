@@ -46,6 +46,14 @@ class _HomePageState extends State<HomePage> {
             onPressed: homeController.pokemonStore.getPokemons,
             icon: const Icon(Icons.refresh),
           ),
+          IconButton(
+            onPressed: () => Modular.to.pushNamed("/free/"),
+            icon: const Icon(Icons.arrow_drop_up),
+          ),
+          IconButton(
+            onPressed: homeController.logout,
+            icon: const Icon(Icons.logout),
+          ),
         ],
       ),
       body: ListenableBuilder(
@@ -62,15 +70,7 @@ class _HomePageState extends State<HomePage> {
             );
           } else if (pokemonState is EmptyPokemonState) {
             bodyWidget = Center(child: Text('Nenhum pokemon foi encontrado'));
-          } else if (pokemonState is GettedPokemonState) {
-            // bodyWidget = ListView.builder(
-            //   itemCount: pokemonState.pokemons.length,
-            //   itemBuilder: (context, index) {
-            //     final pokemon = pokemonState.pokemons[index];
-            //     return ListTile(title: Text(pokemon.name));
-            //   },
-            // );
-
+          } else if (pokemonState is GettedPokemonListState) {
             bodyWidget = Column(
               children: [
                 //_valueNotifier(),
@@ -90,10 +90,16 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       var pokemon = pokemonState.pokemons[index];
                       return GestureDetector(
-                        //onTap: () => _goToDetails(poke.id),
+                        onTap: () {
+                          Modular.to.pushNamed(
+                            "/home/details",
+                            arguments: pokemon,
+                          );
+                        },
                         child: Card(
                           color: Colors.white,
                           elevation: 12,
+
                           child: Column(
                             children: [
                               Expanded(
@@ -114,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.grey[200],
                                 child: Center(
                                   child: Text(
-                                    pokemon.name,
+                                    pokemon.name!,
                                     style: const TextStyle(
                                       fontSize: 16.0,
                                       color: Colors.black87,

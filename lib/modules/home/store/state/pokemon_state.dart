@@ -13,9 +13,15 @@ class ErrorPokemonState implements PokemonState {
 }
 
 class GettedPokemonState implements PokemonState {
+  final PokemonModel pokemon;
+
+  GettedPokemonState({required this.pokemon});
+}
+
+class GettedPokemonListState implements PokemonState {
   final List<PokemonModel> pokemons;
 
-  GettedPokemonState({required this.pokemons});
+  GettedPokemonListState({required this.pokemons});
 }
 
 class PokemonStateFactory {
@@ -26,6 +32,9 @@ class PokemonStateFactory {
   static PokemonState error(String message) =>
       ErrorPokemonState(message: message);
 
-  static PokemonState getted(List<PokemonModel> pokemons) =>
-      GettedPokemonState(pokemons: pokemons);
+  static PokemonState getted(PokemonModel pokemon) =>
+      GettedPokemonState(pokemon: pokemon);
+
+  static PokemonState gettedList(List<PokemonModel> pokemons) =>
+      GettedPokemonListState(pokemons: pokemons);
 }

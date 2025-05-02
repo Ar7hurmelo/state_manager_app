@@ -21,6 +21,12 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('Login'),
         backgroundColor: Color(0xffEB5A3C),
         foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            onPressed: () => Modular.to.pushReplacementNamed("/counter/"),
+            icon: const Icon(Icons.lock),
+          ),
+        ],
       ),
       backgroundColor: Color(0xffEB5A3C),
       body: SingleChildScrollView(

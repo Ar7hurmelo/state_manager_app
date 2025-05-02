@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ApiService {
   ApiService() {
     // Configure Dio
-    configureDio(baseUrl: 'https://pokeapi.co/api/v2/pokemon');
+    configureDio(baseUrl: 'https://pokeapi.co/api/v2');
   }
   // Private constructor
   ApiService._internal();
@@ -49,7 +49,7 @@ class ApiService {
         onResponse:
             onResponse ??
             (response, handler) {
-              debugPrint('Response: ${response.statusCode} ${response.data}');
+              //debugPrint('Response: ${response.statusCode} ${response.data}');
               handler.next(response);
             },
         onError:
