@@ -5,11 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'modules/app/app_module.dart';
 import 'modules/app/app_widget.dart';
 
-late final SharedPreferences prefs;
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  prefs = await SharedPreferences.getInstance();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  runApp(ModularApp(module: AppModule(), child: AppWidget()));
+  runApp(
+    ModularApp(module: AppModule(sharedPreferences: prefs), child: AppWidget()),
+  );
 }

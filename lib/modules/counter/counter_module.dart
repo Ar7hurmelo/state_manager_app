@@ -7,7 +7,9 @@ import 'ui/pages/counter_page.dart';
 
 class CounterModule extends Module {
   @override
-  List<Module> get imports => [AppModule()];
+  List<Module> get imports => [
+    AppModule(sharedPreferences: Modular.get<SharedPreferences>()),
+  ];
 
   @override
   void binds(Injector i) {

@@ -1,11 +1,14 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app/app_module.dart';
 import 'ui/pages/login_page.dart';
 
 class AuthModule extends Module {
   @override
-  List<Module> get imports => [AppModule()];
+  List<Module> get imports => [
+    AppModule(sharedPreferences: Modular.get<SharedPreferences>()),
+  ];
 
   @override
   void binds(Injector i) {

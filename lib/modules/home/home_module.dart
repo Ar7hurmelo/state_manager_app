@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:state_manager_app/modules/home/repositories/i_pokemon_repository.dart';
 import 'package:state_manager_app/modules/home/repositories/impl/pokemon_repository.dart';
 
@@ -11,7 +12,9 @@ import 'ui/pages/pokemon_detail_page.dart';
 
 class HomeModule extends Module {
   @override
-  List<Module> get imports => [AppModule()];
+  List<Module> get imports => [
+    AppModule(sharedPreferences: Modular.get<SharedPreferences>()),
+  ];
 
   @override
   void binds(Injector i) {
